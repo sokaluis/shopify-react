@@ -24,21 +24,36 @@ const ProductPage = () => {
   if (!product.title) return <>Loading...</>;
 
   return (
-    <Box>
-      <Grid templateColumns="repeat(2, 1fr)">
-        <Image src={product.images[0].src} />
-        <Box>
-          <Heading>{product.title}</Heading>
-          <Text>{product.variants[0].price}</Text>
-          <Text>{product.description}</Text>
+    <Box p="2rem">
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} m="auto">
+        <Flex justifyContent="center" alignItems="center">
+          <Image src={product.images[0].src} />
+        </Flex>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          px="2rem"
+        >
+          <Heading pb="2rem">{product.title}</Heading>
+          <Text pb="2rem" fontWeight="bold">
+            {product.variants[0].price}
+          </Text>
+          <Text pb="2rem" color="gray.500">
+            {product.description}
+          </Text>
           <Button
             onClick={() => {
               addItemToCheckout(product.variants[0].id, 1);
             }}
+            _hover={{ opacity: "70%" }}
+            w="10rem"
+            backgroundColor="#FF38BD"
+            color="white"
           >
             Add to Cart
           </Button>
-        </Box>
+        </Flex>
       </Grid>
     </Box>
   );

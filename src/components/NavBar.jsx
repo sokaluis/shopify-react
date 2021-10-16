@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../context/shopContext";
-import { Flex, Icon, Image, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, Icon, Image } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import { FaShoppingBasket } from "@react-icons/all-files/fa/FaShoppingBasket";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ const NavBar = () => {
       background="#FFA8E2"
       flexDirection="row"
       justifyContent="space-between"
+      alignItems="center"
       p="2rem"
     >
       <Icon
@@ -29,14 +30,19 @@ const NavBar = () => {
           w={100}
         />
       </Link>
-      <Icon
-        fill="white"
-        cursor="pointer"
-        as={FaShoppingBasket}
-        w={30}
-        h={30}
-        onClick={openCart}
-      />
+      <Box>
+        <Icon
+          fill="white"
+          cursor="pointer"
+          as={FaShoppingBasket}
+          w={30}
+          h={30}
+          onClick={openCart}
+        />
+        <Badge backgroundColor="#FF38BD" borderRadius="50%">
+          {checkout.lineItems?.length}
+        </Badge>
+      </Box>
     </Flex>
   );
 };
